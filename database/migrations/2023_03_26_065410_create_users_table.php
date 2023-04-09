@@ -3,6 +3,8 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\Hash;
+
 
 return new class extends Migration
 {
@@ -15,15 +17,13 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
+            $table->string('email', 191)->uniqe();
             $table->string('password');
-            $table->rememberToken();
+            $table->string('name');
             $table->timestamps();
         });
     }
-
+    
     /**
      * Reverse the migrations.
      *
@@ -33,4 +33,5 @@ return new class extends Migration
     {
         Schema::dropIfExists('users');
     }
+    
 };
