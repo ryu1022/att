@@ -19,9 +19,24 @@ class Group extends Model
         return $this->belongsToMany(User::class, 'group_user');  
     }
     
-    public function events()   
+    
+    public function events()
     {
-        return $this->belongsToMany(Event::class);  
+        return $this->hasMany(Event::class);  
+    }
+    
+    public function isMenber($id)
+    {
+        $users = $this->users->filter(function($user)use($id){
+            return $user->id == $id;
+        });
+        #dd($users);
+    
+        if($users->isEmpty()){
+            return false;
+        } else {
+            return true;
+        }
     }
 }
     

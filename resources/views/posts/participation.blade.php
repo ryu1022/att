@@ -9,11 +9,15 @@
     <form action="{{ route('participation.join') }}" method="POST">
         @csrf
         <div class='posts'>
-            <input type="hidden" name="group_id" value="{{$group->id}}"> 
+               <input type="hidden" name="group_id" value="{{$group->id}}"> 
             <div class='post'>
-                <h2 class='name'>{{ $group->name }}</h2>
+                <a href="/posts/{{ $group->id }}">{{ $group->name }}</a>
                 <p class='body'>{{ $group->body }}</p>
+                @if($group->isMenber(Auth::user()->id))
+                <div>参加済みです</div>
+                @else
                 <button type="submit">参加する</button>
+                @endif
             </div>
             
         </div>
@@ -26,3 +30,4 @@
     
  
 </x-app-layout>
+
