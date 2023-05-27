@@ -3,6 +3,9 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
+use App\Helper\helpers;
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -36,7 +39,14 @@ Route::middleware('auth')->group(function () {
     Route::get('/posts/{event}', [PostController::class ,'event_show']);
     
     
-    
 });
 
+
+//消さない！
 require __DIR__.'/auth.php';
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+    
