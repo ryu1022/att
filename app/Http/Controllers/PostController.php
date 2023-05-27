@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Group;
+use App\Models\Event;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -35,13 +36,41 @@ class PostController extends Controller
             return redirect('\posts');
         }
     
-    public function particitate(Request $request)
+    public function join(Request $request)
         {
             $group_id = $request->group_id;
             $user_id = auth()->id();
             $group = Group::findOrFail($group_id);
             $group->users()->attach($user_id);
             return redirect()->back()->with(['success'=>'グループに参加しました！']);
+        }
+        
+    public function show(Group $group)
+        {
+            $events = $group->events()->get();
+            return view('posts/show')->with(['group' => $group, "events" => $events]);
+        }
+        
+    public function event_show(Event $event)
+        {
+            return view('posts/show')->with(['event' => $event]);
+        }
+        
+    public function event(Group $group)
+        {
+            return view('posts/event')->with(['group' => $group]);
+        }
+        
+    public function save(Request $request, Event $event, Group $group)
+        {
+            $input = $request['post'];
+            $event->fill($input);
+            $event->group_id = $group->id;
+            $event->creator_id = Auth::user()->id;
+            $event->save();
+            $event->users()->attach(Auth::user()->id);
+            return redirect('/posts');
+            
         }
 
 

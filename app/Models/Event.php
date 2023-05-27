@@ -9,6 +9,12 @@ class Event extends Model
 {
     use HasFactory;
     
+    protected $fillable = [
+        'title',
+        'body'
+        ];
+    
+    
     public function Attendance()   
     {
         return $this->belongsToMany(Attendance::class);  
@@ -23,6 +29,12 @@ class Event extends Model
     {
         return $this->belongsToMany(Comment::class);  
     }
-
+    
+    public function users()   
+    {
+        return $this->belongsToMany(User::class);  
+    }
+    
+    
 }
 

@@ -1,8 +1,13 @@
 <x-app-layout>
     <x-slot name="header">
-        　イベント作成画面
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>イベント</title>
+        <!-- Fonts -->
     </x-slot>
-        <h1>イベント名</h1>
+<link rel="stylesheet" href="{{ asset('css/app.css') }}">
+
+        <h1 class="text-3xl text-green-500">イベント名</h1>
         <form action="/posts/event/{{$group->id}}/save" method="POST">
             @csrf
             <div class="title">
@@ -19,3 +24,4 @@
             <a href="/">戻る</a>
         </div>
 </x-app-layout>
+
