@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Group;
 use App\Models\Event;
 use Illuminate\Support\Facades\Auth;
+use App\Calendar\CalendarView;
 
 
 class PostController extends Controller
@@ -48,7 +49,8 @@ class PostController extends Controller
     public function show(Group $group)
         {
             $events = $group->events()->get();
-            return view('posts/show')->with(['group' => $group, "events" => $events]);
+            $calendar = new CalendarView(time());
+            return view('posts/show')->with(['group' => $group, "events" => $events, "calendar" => $calendar]);
         }
         
     public function event_show(Event $event)
@@ -72,6 +74,6 @@ class PostController extends Controller
             return redirect('/posts');
             
         }
-
-
+    
+    
 }

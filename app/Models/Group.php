@@ -30,13 +30,12 @@ class Group extends Model
         $users = $this->users->filter(function($user)use($id){
             return $user->id == $id;
         });
-        #dd($users);
     
         if($users->isEmpty()){
-            return false;
-        } else {
-            return true;
-        }
+                    return false;
+                } else {
+                    return true;
+                }
     }
 }
     
