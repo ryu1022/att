@@ -18,9 +18,10 @@
                 <p>{{ $group->body }}</p>    
             </div>
         </div>
-        
+    
+    <div class="border-2 border-blue-500 rounded-md bg-blue-400">
         <a href='/posts/event/{{$group->id}}'>イベントを作る</a>
-        
+    </div>
         {{--カレンダー機能--}}
         
     <div class="border border-gray-300 rounded-lg">
@@ -32,7 +33,7 @@
                         <div class="card-header bg-gray-200 text-gray-600 p-2 text-3xl">
                             {{ $calendar->getTitle() }}
                         </div>
-                        <div class="card-body bg-gray-200 text-gray-600 p-2 text-3xl">
+                        <div class="card-body bg-gray-200 text-gray-600 p-2 text-3xl text-center">
                             {!! $calendar->render() !!}
                         </div>
                     </div>
