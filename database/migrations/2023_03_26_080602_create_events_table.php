@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('title', 50);
             $table->string('body', 200);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -28,6 +29,8 @@ return new class extends Migration
      *
      * @return void
      */
+     
+    
     public function down()
     {
         Schema::dropIfExists('events');
