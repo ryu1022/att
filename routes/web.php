@@ -30,15 +30,14 @@ Route::middleware('auth')->group(function () {
     Route::get('/', [PostController::class, 'index'])->name('index');
     Route::get('/create', [PostController::class, 'create'])->name('create');
     Route::get('/participation', [PostController::class, 'participation'])->name('participation');
-    Route::post('/groups', [PostController::class, 'store']);
-    Route::post('/posts/event/{group}/save', [PostController::class, 'save']);
     Route::get('/posts', [PostController::class, 'participation'])->name('participation.index');
-    Route::post('/posts', [PostController::class, 'join'])->name('participation.join');
     Route::get('/posts/event/{group}', [PostController::class, 'event']);
     Route::get('/posts/{group}', [PostController::class ,'show']);
-    Route::get('/posts/{event}', [PostController::class ,'event_show']);
-    
-    
+    Route::get('/posts/{event}/event_show', [PostController::class ,'event_show']);
+    Route::post('/groups', [PostController::class, 'store']);
+    Route::post('/posts/event/{group}/save', [PostController::class, 'save']);
+    Route::post('/posts', [PostController::class, 'join'])->name('participation.join');
+    Route::delete('/posts/show/{event}/delete', [PostController::class, 'delete'])->name('posts.delete');
 });
 
 

@@ -24,7 +24,7 @@ class PostController extends Controller
     
     public function participation(Group $group)
         {
-            return view('posts/participation')->with(['groups' => $group->get()]);;
+            return view('posts/participation')->with(['groups' => $group->get()]);
         } 
 
     public function store(Request $request, Group $group)
@@ -74,6 +74,12 @@ class PostController extends Controller
             return redirect('/posts');
             
         }
-    
-    
+        
+    public function delete(Event $event)
+        {
+            $event->delete();
+            return redirect('/show');
+        }
+        
+
 }
