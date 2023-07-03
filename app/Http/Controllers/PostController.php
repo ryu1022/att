@@ -34,7 +34,7 @@ class PostController extends Controller
             $group->leader_id = Auth::user()->id;
             $group->save();
             $group->users()->attach(Auth::user()->id);
-            return redirect('\posts');
+            return redirect('/posts');
         }
     
     public function join(Request $request)
@@ -74,6 +74,12 @@ class PostController extends Controller
             return redirect('/posts');
             
         }
+        
+    public function event_detail_show(Event $event)
+        {
+            return view('posts/event_detail')->with(['event' => $event]);
+        }
+        
         
     public function delete(Event $event)
         {

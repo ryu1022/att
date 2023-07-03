@@ -33,7 +33,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/posts', [PostController::class, 'participation'])->name('participation.index');
     Route::get('/posts/event/{group}', [PostController::class, 'event']);
     Route::get('/posts/{group}', [PostController::class ,'show']);
-    Route::get('/posts/{event}/event_show', [PostController::class ,'event_show']);
+    Route::get('/posts/{event}/show', [PostController::class ,'event_show']);
+    Route::get('/posts/{event}/event_detail', [PostController::class, 'event_detail_show'])->name('events_detail.show');
     Route::post('/groups', [PostController::class, 'store']);
     Route::post('/posts/event/{group}/save', [PostController::class, 'save']);
     Route::post('/posts', [PostController::class, 'join'])->name('participation.join');
