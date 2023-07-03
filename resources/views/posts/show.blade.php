@@ -22,7 +22,8 @@
     <div class="border-2 border-blue-500 rounded-md bg-blue-400">
         <a href='/posts/event/{{$group->id}}'>イベントを作る</a>
     </div>
-        {{--カレンダー機能--}}
+        
+        <!-- カレンダー機能 -->
         
     <div class="border border-gray-300 rounded-lg">
         <div class="grid grid-cols-7 gap-2">
@@ -43,26 +44,30 @@
         </div>
     </div>
         
-        
-        <div class="text-xl">
+        <!-- イベント投稿機能 -->
+    <div class="my-8 text-2xl">
         @foreach($events as $event)
+        <div class="my-8">
             <h1 class="title">
-                {{ $event->title }}
+                <a href="/posts/{{ $event->id }}/event_detail">{{ $event->title }}</a>
             </h1>
             <div class="content">
                 <div class="content__post">
                     <p>{{ $event->body }}</p>    
                 </div>
             </div>
-            
-            <!-- イベント投稿削除機能 -->
+        </div>    
+        
+        <!-- イベント投稿削除機能 -->
         <form action="/posts/show/{{ $event->id }}/delete" id="form_{{ $event->id }}" method="post">
           @csrf
           @method('DELETE')
+         <div class="text-xl">
           <button type="button" onclick="deletePost({{ $event->id }})">削除する</button>
+         </div>
         </form>
         @endforeach
-        </div>
+    </div>
         
     
         <script>
