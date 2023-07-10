@@ -17,9 +17,24 @@
                 </div>
             </div>
         </div>    
-        
     </div>
     
+
+    <form action="{{ route('event.join', ['event' => $event->id]) }}" method="POST">
+        @csrf
+        <button class="text-xl" type="submit">参加する</button>
+    </form><br>
+
+
+    <div class="text-xl">
+        <h2>参加者</h2>
+        <ul>
+            @foreach ($event->users as $user)
+                <li>{{ $user->name }}</li>
+            @endforeach
+        </ul>
+    </div>
+
         <div class="footer">
         <a href="/participation">戻る</a>
         </div>

@@ -37,7 +37,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/posts/{event}/event_detail', [PostController::class, 'event_detail_show'])->name('events_detail.show');
     Route::post('/groups', [PostController::class, 'store']);
     Route::post('/posts/event/{group}/save', [PostController::class, 'save']);
-    Route::post('/posts', [PostController::class, 'join'])->name('participation.join');
+    Route::post('/posts/particitation', [PostController::class, 'join'])->name('participation.join');
+    Route::post('/posts/{event}/event_join', [PostController::class, 'event_join'])->name('event.join');
     Route::delete('/posts/show/{event}/delete', [PostController::class, 'delete'])->name('posts.delete');
 });
 

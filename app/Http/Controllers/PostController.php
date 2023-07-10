@@ -87,5 +87,12 @@ class PostController extends Controller
             return redirect('/show');
         }
         
-
+    public function event_join(Request $request, Event $event)
+        {
+            $user_id = auth()->id();
+            $eventModel = Event::findOrFail($event->id); // イベントモデルを取得
+            $eventModel->users()->attach($user_id); // 参加者の関連付け
+            return redirect()->back()->with(['success' => 'イベントに参加しました！']);
+        }
+        
 }
